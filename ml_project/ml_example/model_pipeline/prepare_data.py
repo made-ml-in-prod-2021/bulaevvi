@@ -1,20 +1,22 @@
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.preprocessing import OneHotEncoder, StandardScaler, FunctionTransformer
-from sklearn.base import BaseEstimator, TransformerMixin
-from typing import List
 import pandas as pd
 import numpy as np
+from sklearn.pipeline import Pipeline, FeatureUnion
+from sklearn.preprocessing import OneHotEncoder, FunctionTransformer
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.exceptions import NotFittedError
+from typing import List
 from cloudpickle import dump
 
 
 class CustomMinMaxScaler(BaseEstimator, TransformerMixin):
     """
-    Custom Min Max Scaler
+    Custom MinMaxScaler
     """
 
     def __init__(self, feature_range=(0, 1), copy=True):
         self.feature_range = feature_range
         self.copy = copy
+        self.fitted = False
 
     def fit(self, X, y=None):
         """
@@ -26,13 +28,17 @@ class CustomMinMaxScaler(BaseEstimator, TransformerMixin):
         data_range = np.max(X, axis=0) - data_min
         self.scale_ = (feature_range[1] - feature_range[0]) / data_range
         self.min_ = feature_range[0] - data_min * self.scale_
+        self.fitted = True
         return self
 
     def transform(self, X):
         """Tranform data from fitted scale and min"""
-        X *= self.scale_
-        X += self.min_
-        return X
+        if self.fitted:
+            X *= self.scale_
+            X += self.min_
+            return X
+        else:
+            raise NotFittedError("Custom MinMaxScaler is not fitted yet")
 
 
 class DataProcessingPipeline:
@@ -44,6 +50,7 @@ class DataProcessingPipeline:
         self.categorical_features = categorical_features
         self.numerical_features = numerical_features
         self.pipeline = None
+        self.fitted = False
 
     @staticmethod
     def _build_categorical_pipeline(categorical_features) -> Pipeline:
@@ -75,13 +82,16 @@ class DataProcessingPipeline:
             ))
         ])
         self.pipeline.fit(data)
+        self.fitted = True
 
     def transform(self, data: pd.DataFrame) -> np.array:
-        if not data.empty:
-            return self.pipeline.transform(data)
-        return np.array([])
+        if self.fitted:
+            if not data.empty:
+                return self.pipeline.transform(data)
+            return np.array([])
+        else:
+            raise NotFittedError("DataProcessingPipeline is not fitted yet")
 
     def dump_preprocessor(self, path: str) -> None:
         with open(path, 'wb') as f:
             dump(self.pipeline, f)
-
