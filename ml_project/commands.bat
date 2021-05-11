@@ -1,4 +1,4 @@
-python reports/make_report.py
+python reports/make_report.py configs/config_report.yml
 python ml_example/train_pipeline.py configs/config_lr.yml train
 python ml_example/train_pipeline.py configs/config_rf.yml train
 python ml_example/train_pipeline.py configs/config_lr.yml predict
