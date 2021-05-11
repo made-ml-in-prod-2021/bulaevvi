@@ -13,11 +13,16 @@ class Classifier:
     def __init__(self, params, model_type: str):
         self.model_type = model_type
         if model_type == "Logistic Regression":
-            self.model = LogisticRegression(C=params.C, penalty=params.penalty, fit_intercept=params.fit_intercept,
-                                            random_state=params.random_state)
+            kwargs = {'C': params.C,
+                      'penalty': params.penalty,
+                      'fit_intercept': params.fit_intercept,
+                      'random_state': params.random_state}
+            self.model = LogisticRegression(**kwargs)
         if model_type == "Random Forest Classifier":
-            self.model = RandomForestClassifier(n_estimators=params.n_estimators, max_depth=params.max_depth,
-                                            random_state=params.random_state)
+            kwargs = {'n_estimators': params.n_estimators,
+                      'max_depth': params.max_depth,
+                      'random_state': params.random_state}
+            self.model = RandomForestClassifier(**kwargs)
 
     def fit(self, X: np.array, y: np.array) -> None:
         self.model.fit(X, y)
