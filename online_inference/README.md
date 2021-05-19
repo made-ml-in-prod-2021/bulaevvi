@@ -26,7 +26,7 @@ docker run -p 8000:8000 bulaevvi/online_inference:v1
 ```
 В отдельной командной оболочке запустите скрипт, делающий запросы серверу:
 ```
-cd online_inference
+cd requests
 python make_request.py
 ```
 
