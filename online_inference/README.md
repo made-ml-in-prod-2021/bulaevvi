@@ -24,10 +24,14 @@ docker pull bulaevvi/online_inference:v1
 ```
 docker run -p 8000:8000 bulaevvi/online_inference:v1
 ```
-В отдельной командной оболочке запустите скрипт, делающий запросы серверу:
+Для генерации запросов серверу в отдельной командной оболочке выполните команды:
 ```
 cd requests
 python make_request.py
+```
+Для запуска тестов при запущенном серверу в отдельной командной оболочке в папке online_inference запустите команду:
+```
+pytest --cov
 ```
 
 ## Project Organization
