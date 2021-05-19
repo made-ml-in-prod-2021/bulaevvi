@@ -29,7 +29,7 @@ docker run -p 8000:8000 bulaevvi/online_inference:v1
 cd requests
 python make_request.py
 ```
-Для запуска тестов при запущенном серверу в отдельной командной оболочке в папке online_inference запустите команду:
+Для запуска тестов при запущенном сервере в отдельной командной оболочке в папке online_inference запустите команду:
 ```
 pytest --cov
 ```
