@@ -17,12 +17,18 @@ pip install -r requirements.txt
 ## Запуск проекта
 
 Скачайте docker-образ:
-```docker pull bulaevvi/online-inference:v1```
+```
+docker pull bulaevvi/online-inference:v1
+```
 Запустите скачанный образ:
-```docker run -p 8000:8000 bulaevvi/online_inference:v1```
+```
+docker run -p 8000:8000 bulaevvi/online_inference:v1
+```
 В отдельной командной оболочке запустите скрипт, делающий запросы серверу:
-```cd online_inference
-python make_request.py```
+```
+cd online_inference
+python make_request.py
+```
 
 ## Project Organization
 
