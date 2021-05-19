@@ -50,16 +50,18 @@ python make_request.py
 ## Выявленные сложности и их решение
 
 В процессе создания проекта было обнаружено, что FastAPI некорректно загружает сериализованные модели с кастомными функциями. Детально я описывал данную проблему в дискорде:
-https://discord.com/channels/681511874449244211/826373405577838602/844617060143202364
-Кроме того, есть обсуждение на stackoverflow:
+https://discord.com/channels/681511874449244211/826373405577838602/844617060143202364  
+Кроме того, есть обсуждение на stackoverflow:  
 https://stackoverflow.com/questions/62953477/fastapi-could-not-find-model-defintion-when-run-with-uvicorn
 
 Проблема проявлялась в том, что при стандартном вызове uvicorn ```uvicorn app:app``` выскакивала следующая ошибка:
-```AttributeError: Can't get attribute 'get_num_features' on <module '__main__' from 'C:\\Users\\vova\\anaconda3\\envs\\ml_in_prod\\Scripts\\uvicorn.exe\\__main__.py'>```
+```
+AttributeError: Can't get attribute 'get_num_features' on <module '__main__' from 'C:\\Users\\vova\\anaconda3\\envs\\ml_in_prod\\Scripts\\uvicorn.exe\\__main__.py'>
+```
 
 Локально пофиксить проблему удалось следующим образом:
 - В теле скрипта прописал используемые кастомные функции (участок кода отмечен соответствующим комментарием)
-- Для страта сервера использую не стандартную команду uvicorn app:app, а вот такую:  
+- Для старта сервера использую не стандартную команду uvicorn app:app, а вот такую:  
 ```python app.py``` для Win10 и ```python3 app.py``` для Linux
 Поскольку я не владею Linux и Mac, проверить все случаи я не смог, поэтому вполне вероятно, что подобная ошибка может впоследствии возникнуть.
 
