@@ -20,18 +20,12 @@ pip install -r requirements.txt
     ├── requests
     │   ├── make_request.py    <- Скрипт, делающий запросы к серверу.
     │   └── requests.csv       <- Файл, из которого формируются запросы.
-    │
     ├── tests
     │   └── test_app.py        <- Тест для /predict.
-    │
     ├── app.py                 <- inference модели в виде rest-сервиса.
-    │
     ├── Dockerfile             <- Dockerfile-файл для сборки контейнера.
-    │
     ├── model.pkl              <- Сериализованная обученная модель.
-    │
     ├── README.md              <- README с описанием деталей проекта.
-    │
     └── requirements.txt       <- Описание зависимостей.
 
 ## Оптимизация размера docker image
