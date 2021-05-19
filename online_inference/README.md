@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 Скачайте docker-образ:
 ```
-docker pull bulaevvi/online-inference:v1
+docker pull bulaevvi/online_inference:v1
 ```
 Запустите скачанный образ:
 ```
@@ -73,7 +73,7 @@ AttributeError: Can't get attribute 'get_num_features' on <module '__main__' fro
 cd online_inference
 docker build -t bulaevvi/online_inference:v1 .
 ```
-апуск образа на локальной машине:
+Запуск образа на локальной машине:
 ```
 docker run -p 8000:8000 bulaevvi/online_inference:v1
 ```
