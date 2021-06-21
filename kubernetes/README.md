@@ -2,7 +2,7 @@
 
 ## Локальное развертывание kubernetes  
 Развертывание локального kubernetes под Win10 + WSL2 + Docker Desktop оказалось достаточно простым делом. Я решил воспользоваться встроенными средствами Docker Desktop:   
-В графическом интерфейсе Docker Desktop заходим в Settings -> Kunernetes -> Enable Kubernetes (ставим галочку).
+В графическом интерфейсе Docker Desktop заходим в Settings -> Kunernetes -> Enable Kubernetes (ставим галочку).  
 После этого Docker Desktop подтягивает все необходимые данные, и можно пользоваться командами kubectl.  
 
 ## Команды запуска
