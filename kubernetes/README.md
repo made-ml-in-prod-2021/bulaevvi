@@ -1,8 +1,9 @@
 # ДЗ № 4 "Машинное обучение в продакшене", MADE, весна 2021.
 
-## Развертывание kubernetes локально
+## Локальное развертывание kubernetes  
 Развертывание локального kubernetes под Win10 + WSL2 + Docker Desktop оказалось достаточно простым делом. Я решил воспользоваться встроенными средствами Docker Desktop:   
-В графическом интерфейсе Docker Desktop заходим Settings -> Kunernetes -> Enable Kubernetes (ставим галочку).
+В графическом интерфейсе Docker Desktop заходим в Settings -> Kunernetes -> Enable Kubernetes (ставим галочку).
+После этого Docker Desktop подтягивает все необходимые данные, и можно пользоваться командами kubectl.  
 
 ## Команды запуска
 Для старта pod'а перейдите в каталог с файлом `online-inference-pod.yaml` и запустите команду:  
